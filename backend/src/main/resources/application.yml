@@ -1,2 +1,19 @@
-owncloud:
-  location: https://owncloud.coolstuff.software
+security:
+  oauth2:
+    client:
+      client-id: rest
+      client-secret: rest
+  user:
+    name: rest
+    password: rest
+spring:
+  datasource:
+    url: jdbc:h2:mem:oauth2-example
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.format_sql: true
+    show-sql: true
