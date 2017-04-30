@@ -3,9 +3,6 @@ security:
     client:
       client-id: rest
       client-secret: rest
-  user:
-    name: rest
-    password: rest
 spring:
   datasource:
     url: jdbc:h2:mem:oauth2-example

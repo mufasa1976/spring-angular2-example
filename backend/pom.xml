@@ -125,6 +125,13 @@
       <scope>runtime</scope>
     </dependency>
 
+    <!-- Hibernate Java 8 -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-java8</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+
     <!-- SLF4J -->
     <dependency>
       <groupId>ch.qos.logback</groupId>

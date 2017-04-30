@@ -6,31 +6,34 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.AbstractPersistable;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Version;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
 @Setter(AccessLevel.NONE)
 @MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
 public abstract class AbstractPersistableEntity extends AbstractPersistable<Long> implements Auditable {
 
   @Version
   private int version;
 
   @CreatedBy
+  @Column(updatable = false, nullable = false)
   private String createdBy;
 
   @CreatedDate
+  @Column(updatable = false, nullable = false)
   private LocalDateTime createdAt;
 
   @LastModifiedBy
+  @Column(insertable = false)
   private String lastModifiedBy;
 
   @LastModifiedDate
+  @Column(insertable = false)
   private LocalDateTime lastModifiedAt;
 
 }
