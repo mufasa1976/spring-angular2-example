@@ -12,6 +12,7 @@
   <artifactId>spring-oauth2-example-backend</artifactId>
 
   <properties>
+    <owncloud.version>1.2.0-SNAPSHOT</owncloud.version>
   </properties>
 
   <dependencies>
@@ -83,6 +84,13 @@
     <dependency>
       <groupId>com.querydsl</groupId>
       <artifactId>querydsl-jpa</artifactId>
+    </dependency>
+
+    <!-- Owncloud -->
+    <dependency>
+      <groupId>software.coolstuff</groupId>
+      <artifactId>owncloud-spring-boot-starter</artifactId>
+      <version>${owncloud.version}</version>
     </dependency>
 
     <!-- Provided Dependencies -->

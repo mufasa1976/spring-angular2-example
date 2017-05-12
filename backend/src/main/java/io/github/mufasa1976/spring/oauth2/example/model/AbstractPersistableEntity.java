@@ -1,21 +1,29 @@
 package io.github.mufasa1976.spring.oauth2.example.model;
 
-import lombok.*;
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.EntityListeners;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Version;
+
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.hateoas.Identifiable;
 
-import javax.persistence.*;
-import java.time.LocalDateTime;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.Setter;
 
 @Data
 @Setter(AccessLevel.NONE)
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public abstract class AbstractPersistableEntity extends AbstractPersistable<Long> implements Auditable {
+public abstract class AbstractPersistableEntity extends AbstractPersistable<Long> implements Auditable, Identifiable<Long> {
 
   @Version
   private int version;

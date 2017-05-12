@@ -13,4 +13,13 @@ spring:
       ddl-auto: update
     properties:
       hibernate.format_sql: true
-    show-sql: true
+    show-sql: false
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+      write-dates-with-zone-id: true
+      indent-output: true
+    generator:
+      write-bigdecimal-as-plain: true
+owncloud:
+  location: classpath:/owncloud.xml
