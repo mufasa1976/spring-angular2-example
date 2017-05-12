@@ -4,12 +4,10 @@ import java.time.LocalDateTime;
 
 import org.springframework.hateoas.ResourceSupport;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
+@NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @ToString

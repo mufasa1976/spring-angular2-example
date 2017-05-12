@@ -17,15 +17,18 @@ import org.springframework.hateoas.Identifiable;
 
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Setter;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 @Setter(AccessLevel.NONE)
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public abstract class AbstractPersistableEntity extends AbstractPersistable<Long> implements Auditable, Identifiable<Long> {
 
   @Version
+  @Setter(AccessLevel.PUBLIC)
   private int version;
 
   @CreatedBy

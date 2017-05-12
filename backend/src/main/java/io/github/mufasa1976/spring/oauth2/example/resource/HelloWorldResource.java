@@ -4,14 +4,10 @@ import java.time.LocalDateTime;
 
 import org.springframework.hateoas.core.Relation;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
+import lombok.*;
 
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
-import lombok.Value;
-
-@Value
+@Data
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Relation(value = "helloWorld", collectionRelation = "helloWorlds")
@@ -20,7 +16,6 @@ public class HelloWorldResource extends AbstractResource {
   private String value;
 
   @Builder
-  @JsonCreator
   public HelloWorldResource(
       final int version,
       final String createdBy,

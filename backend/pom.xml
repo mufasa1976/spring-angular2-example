@@ -86,6 +86,12 @@
       <artifactId>querydsl-jpa</artifactId>
     </dependency>
 
+    <!-- ModelMapper -->
+    <dependency>
+      <groupId>org.modelmapper</groupId>
+      <artifactId>modelmapper</artifactId>
+    </dependency>
+
     <!-- Owncloud -->
     <dependency>
       <groupId>software.coolstuff</groupId>

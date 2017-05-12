@@ -3,17 +3,13 @@ package io.github.mufasa1976.spring.oauth2.example.controller;
 import java.util.Optional;
 
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.PagedResources;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import io.github.mufasa1976.spring.oauth2.example.assembler.HelloWorldResourceAssembler;
-import io.github.mufasa1976.spring.oauth2.example.model.HelloWorldEntity;
-import io.github.mufasa1976.spring.oauth2.example.repository.HelloWorldRepository;
 import io.github.mufasa1976.spring.oauth2.example.resource.HelloWorldResource;
+import io.github.mufasa1976.spring.oauth2.example.service.HelloWorldService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -21,19 +17,36 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class HelloWorldController {
 
-  private final PagedResourcesAssembler<HelloWorldEntity> pagedResourcesAssembler;
-  private final HelloWorldResourceAssembler helloWorldResourceAssembler;
-  private final HelloWorldRepository helloWorldRepository;
-
-  @GetMapping("{id}")
-  public Optional<HelloWorldResource> getById(@PathVariable Long id) {
-    return Optional.ofNullable(helloWorldRepository.getOne(id))
-        .map(helloWorldResourceAssembler::toResource);
-  }
+  private final HelloWorldService helloWorldService;
 
   @GetMapping
-  public PagedResources<HelloWorldResource> findAll(Pageable pageable) {
-    return pagedResourcesAssembler.toResource(helloWorldRepository.findAll(pageable), helloWorldResourceAssembler);
+  public PagedResources<HelloWorldResource> findAll(Pageable pageable, @RequestParam Optional<String> filter) {
+    return helloWorldService.readAll(pageable, filter);
+  }
+
+  @GetMapping("{id}")
+  public ResponseEntity<HelloWorldResource> read(@PathVariable Long id) {
+    return helloWorldService.read(id)
+        .map(ResponseEntity::ok)
+        .orElseGet(ResponseEntity.notFound()::build);
+  }
+
+  @PutMapping("{id}")
+  public ResponseEntity<HelloWorldResource> update(@PathVariable Long id, @RequestBody HelloWorldResource resource) {
+    return helloWorldService.update(id, resource)
+        .map(ResponseEntity::ok)
+        .orElseGet(ResponseEntity.notFound()::build);
+  }
+
+  @PostMapping
+  @ResponseStatus(HttpStatus.CREATED)
+  public HelloWorldResource create(@RequestBody HelloWorldResource resource) {
+    return helloWorldService.create(resource);
+  }
+
+  @DeleteMapping("{id}")
+  public void delete(@PathVariable Long id) {
+    helloWorldService.delete(id);
   }
 
 }
