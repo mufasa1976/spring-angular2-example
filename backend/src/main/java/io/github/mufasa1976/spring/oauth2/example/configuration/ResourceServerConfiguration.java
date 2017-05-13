@@ -14,15 +14,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @EnableResourceServer
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
-
   private final AuthenticationManager authenticationManager;
   private final TokenStore tokenStore;
 
   @Override
   public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
     resources
-        .authenticationManager(authenticationManager)
-        .tokenStore(tokenStore);
+        .tokenStore(tokenStore)
+        .authenticationManager(authenticationManager);
   }
 
   @Override
@@ -33,12 +32,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
           .antMatchers("/api/**").authenticated()
           .anyRequest().permitAll()
         .and()
-        .csrf().disable()
-        .headers()
-          .frameOptions().disable()
-        .and()
         .httpBasic();
     //@formatter:on
   }
-
 }
