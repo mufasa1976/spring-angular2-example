@@ -3,7 +3,12 @@ security:
     client:
       client-id: rest
       client-secret: rest
+  enable-csrf: false
+  headers:
+    frame: false
 spring:
+  aop:
+    proxy-target-class: true # without the Security wont work in conjunction with the GetMapping
   datasource:
     url: jdbc:h2:mem:oauth2-example
     username: sa
@@ -11,8 +16,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
-    properties:
-      hibernate.format_sql: true
+#    properties:
+#      hibernate.format_sql: true
     show-sql: false
   jackson:
     serialization:
