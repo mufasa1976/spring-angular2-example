@@ -6,13 +6,29 @@ import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import lombok.Builder;
+import lombok.Value;
+
 @RestControllerAdvice
 public class RestControllerAdvisor {
 
   @ExceptionHandler(ObjectOptimisticLockingFailureException.class)
-  public ResponseEntity<String> handleOptimisticLockException(ObjectOptimisticLockingFailureException exception) {
+  public ResponseEntity<OptimisticLockMessage> handleOptimisticLockException(ObjectOptimisticLockingFailureException exception) {
+    OptimisticLockMessage message = OptimisticLockMessage.builder()
+        .entityClassName(exception.getPersistentClassName())
+        .identifier(exception.getIdentifier())
+        .message(exception.getMessage())
+        .build();
     return ResponseEntity.status(HttpStatus.CONFLICT)
-        .body(exception.getMessage());
+        .body(message);
+  }
+
+  @Value
+  @Builder
+  static class OptimisticLockMessage {
+    private String entityClassName;
+    private Object identifier;
+    private String message;
   }
 
 }
