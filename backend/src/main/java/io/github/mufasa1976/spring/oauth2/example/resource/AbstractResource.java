@@ -7,8 +7,7 @@ import org.springframework.hateoas.ResourceSupport;
 import lombok.*;
 
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(callSuper = false)
 @ToString
 abstract class AbstractResource extends ResourceSupport {
