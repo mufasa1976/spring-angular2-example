@@ -1,11 +1,7 @@
-security:
-  oauth2:
-    client:
-      client-id: rest
-      client-secret: rest
-  enable-csrf: false
-  headers:
-    frame: false
+server:
+  session:
+    cookie:
+      name: EXAMPLESESSION
 spring:
   aop:
     proxy-target-class: true # without the Security wont work in conjunction with the GetMapping

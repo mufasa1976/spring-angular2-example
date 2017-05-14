@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import lombok.Builder;
 import lombok.Value;
+import lombok.extern.slf4j.Slf4j;
 
 @RestControllerAdvice
+@Slf4j
 public class RestControllerAdvisor {
 
   @ExceptionHandler(ObjectOptimisticLockingFailureException.class)
@@ -30,5 +32,4 @@ public class RestControllerAdvisor {
     private Object identifier;
     private String message;
   }
-
 }

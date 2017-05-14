@@ -4,17 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMapper;
 import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper;
-import org.springframework.security.oauth2.provider.expression.OAuth2MethodSecurityExpressionHandler;
 
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(securedEnabled = true)
 public class GlobalSecurityConfiguration extends GlobalMethodSecurityConfiguration {
 
   @Autowired
@@ -31,11 +29,6 @@ public class GlobalSecurityConfiguration extends GlobalMethodSecurityConfigurati
     SimpleAuthorityMapper authorityMapper = new SimpleAuthorityMapper();
     authorityMapper.setConvertToUpperCase(true);
     return authorityMapper;
-  }
-
-  @Override
-  protected MethodSecurityExpressionHandler createExpressionHandler() {
-    return new OAuth2MethodSecurityExpressionHandler();
   }
 
 }
