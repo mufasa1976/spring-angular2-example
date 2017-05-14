@@ -1,4 +1,4 @@
-package io.github.mufasa1976.spring.oauth2.example.controller;
+package io.github.mufasa1976.spring.oauth2.example.controller.impl;
 
 import java.util.Optional;
 
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.github.mufasa1976.spring.oauth2.example.controller.HelloWorldController;
 import io.github.mufasa1976.spring.oauth2.example.resource.HelloWorldResource;
 import io.github.mufasa1976.spring.oauth2.example.service.HelloWorldService;
 import lombok.RequiredArgsConstructor;

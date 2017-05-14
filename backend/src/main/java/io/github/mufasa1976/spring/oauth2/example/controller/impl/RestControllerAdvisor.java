@@ -1,4 +1,4 @@
-package io.github.mufasa1976.spring.oauth2.example.controller;
+package io.github.mufasa1976.spring.oauth2.example.controller.impl;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

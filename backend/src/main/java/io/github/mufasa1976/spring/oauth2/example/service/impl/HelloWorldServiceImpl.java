@@ -1,4 +1,4 @@
-package io.github.mufasa1976.spring.oauth2.example.service;
+package io.github.mufasa1976.spring.oauth2.example.service.impl;
 
 import java.util.Optional;
 
@@ -19,6 +19,7 @@ import io.github.mufasa1976.spring.oauth2.example.model.HelloWorldEntity;
 import io.github.mufasa1976.spring.oauth2.example.model.QHelloWorldEntity;
 import io.github.mufasa1976.spring.oauth2.example.repository.HelloWorldRepository;
 import io.github.mufasa1976.spring.oauth2.example.resource.HelloWorldResource;
+import io.github.mufasa1976.spring.oauth2.example.service.HelloWorldService;
 import lombok.RequiredArgsConstructor;
 
 @Service

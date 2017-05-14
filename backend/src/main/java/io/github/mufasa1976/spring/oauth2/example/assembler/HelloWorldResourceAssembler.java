@@ -5,7 +5,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import org.springframework.hateoas.mvc.IdentifiableResourceAssemblerSupport;
 import org.springframework.stereotype.Component;
 
-import io.github.mufasa1976.spring.oauth2.example.controller.HelloWorldControllerImpl;
+import io.github.mufasa1976.spring.oauth2.example.controller.impl.HelloWorldControllerImpl;
 import io.github.mufasa1976.spring.oauth2.example.model.HelloWorldEntity;
 import io.github.mufasa1976.spring.oauth2.example.resource.HelloWorldResource;
 

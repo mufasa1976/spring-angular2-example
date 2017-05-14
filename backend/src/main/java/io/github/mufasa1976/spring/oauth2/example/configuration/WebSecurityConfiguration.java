@@ -24,6 +24,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Data
   @ConfigurationProperties("security.login")
   public static class LoginProperties {
+    private String loginPage = "/api/login";
+    private String logoutUrl = "/api/logout";
     private String usernameParameter = "username";
     private String passwordParameter = "password";
   }
@@ -49,8 +51,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         .httpBasic()
         .and()
         .formLogin()
-          .loginPage("/api/login")
-          .loginProcessingUrl("/api/login")
+          .loginPage(loginProperties.getLoginPage())
+          .loginProcessingUrl(loginProperties.getLoginPage())
           .successForwardUrl("/api/userinfo")
           .failureForwardUrl("/api/login/failure")
           .usernameParameter(loginProperties.getUsernameParameter())
@@ -58,7 +60,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
           .permitAll()
         .and()
         .logout()
-          .logoutUrl("/api/logout")
+          .logoutUrl(loginProperties.getLogoutUrl())
           .deleteCookies(cookieName)
           .logoutSuccessHandler(logoutSuccessHandler())
           .permitAll();
