@@ -1,10 +1,10 @@
-import { SpringOauth2ExamplePage } from './app.po';
+import { SpringAngular2ExamplePage } from './app.po';
 
-describe('spring-oauth2-example App', () => {
-  let page: SpringOauth2ExamplePage;
+describe('spring-angular2-example App', () => {
+  let page: SpringAngular2ExamplePage;
 
   beforeEach(() => {
-    page = new SpringOauth2ExamplePage();
+    page = new SpringAngular2ExamplePage();
   });
 
   it('should display message saying app works', () => {

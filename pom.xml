@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.github.mufasa1976</groupId>
-  <artifactId>spring-oauth2-example</artifactId>
+  <artifactId>spring-angular2-example</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
@@ -15,9 +15,9 @@
   </licenses>
 
   <scm>
-    <url>https://github.com/mufasa1976/spring-oauth2-example</url>
-    <connection>scm:git:git://github.com/mufasa1976/spring-oauth2-example.git</connection>
-    <developerConnection>scm:git:git@github.com:mufasa1976/spring-oauth2-example.git</developerConnection>
+    <url>https://github.com/mufasa1976/spring-angular2-example</url>
+    <connection>scm:git:git://github.com/mufasa1976/spring-angular2-example.git</connection>
+    <developerConnection>scm:git:git@github.com:mufasa1976/spring-angular2-example.git</developerConnection>
   </scm>
 
   <modules>
@@ -73,6 +73,11 @@
     <pluginManagement>
       <plugins>
         <!-- Maven Plugins of Apache Group -->
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.0.2</version>
+        </plugin>
+
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.6.0</version>

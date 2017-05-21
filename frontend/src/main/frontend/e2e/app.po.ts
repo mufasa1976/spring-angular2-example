@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class SpringOauth2ExamplePage {
+export class SpringAngular2ExamplePage {
   navigateTo() {
     return browser.get('/');
   }
