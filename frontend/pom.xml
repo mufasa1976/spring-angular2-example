@@ -19,6 +19,7 @@
 
         <configuration>
           <workingDirectory>src/main/frontend</workingDirectory>
+          <installDirectory>target</installDirectory>
         </configuration>
 
         <executions>
