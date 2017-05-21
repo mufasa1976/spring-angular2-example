@@ -1,9 +1,9 @@
-CREATE TABLE "HELLO_WORLD" (
-  "ID"               BIGINT       NOT NULL PRIMARY KEY AUTO_INCREMENT
- ,"VERSION"          INTEGER      NOT NULL
- ,"VALUE"            VARCHAR(255)
- ,"CREATED_AT"       TIMESTAMP    NOT NULL
- ,"CREATED_BY"       VARCHAR(255) NOT NULL
- ,"LAST_MODIFIED_AT" TIMESTAMP
- ,"LAST_MODIFIED_BY" VARCHAR(255)
+CREATE TABLE hello_world (
+  id               BIGINT       NOT NULL PRIMARY KEY
+ ,version          INTEGER      NOT NULL
+ ,value            VARCHAR(255)
+ ,created_at       TIMESTAMP    NOT NULL
+ ,created_by       VARCHAR(255) NOT NULL
+ ,last_modified_at TIMESTAMP
+ ,last_modified_by VARCHAR(255)
 );

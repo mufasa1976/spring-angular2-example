@@ -12,13 +12,6 @@
   <artifactId>spring-oauth2-example-frontend</artifactId>
 
   <build>
-    <resources>
-      <resource>
-        <directory>target/frontend</directory>
-        <targetPath>static</targetPath>
-      </resource>
-    </resources>
-
     <plugins>
       <plugin>
         <groupId>com.github.eirslett</groupId>
@@ -52,7 +45,41 @@
               <goal>npm</goal>
             </goals>
             <configuration>
-              <arguments>run build</arguments>
+              <arguments>run build --env=prod</arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>add-source</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/main/frontend</source>
+              </sources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>add-resource</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>add-resource</goal>
+            </goals>
+            <configuration>
+              <resources>
+                <resource>
+                  <directory>target/frontend</directory>
+                  <targetPath>META-INF/resources/webjars/${project.artifactId}/${project.version}</targetPath>
+                </resource>
+              </resources>
             </configuration>
           </execution>
         </executions>

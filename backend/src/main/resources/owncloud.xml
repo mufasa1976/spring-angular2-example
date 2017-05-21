@@ -9,6 +9,7 @@
       <groups>
         <group>group1</group>
         <group>group2</group>
+        <group>actuator</group>
       </groups>
     </user>
   </users>
@@ -16,5 +17,6 @@
     <group>group1</group>
     <group>group2</group>
     <group>group3</group>
+    <group>actuator</group>
   </groups>
 </owncloud>
