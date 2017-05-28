@@ -33,9 +33,19 @@ class WebMvcConfiguration extends WebMvcConfigurerAdapter {
   @Override
   public void addViewControllers(ViewControllerRegistry registry) {
     registry.setOrder(1);
-    registry.addViewController("/").setViewName("redirect:/index.html");
-    registry.addViewController("/index.html").setViewName("index");
+    addAngularRoutes(registry);
     super.addViewControllers(registry);
+  }
+
+  private void addAngularRoutes(ViewControllerRegistry registry) {
+    addAngularRoute("/", registry);
+    addAngularRoute("/heroes", registry);
+    addAngularRoute("/heroes/**", registry);
+    addAngularRoute("/dashboard", registry);
+  }
+
+  private void addAngularRoute(String route, ViewControllerRegistry registry) {
+    registry.addViewController(route).setViewName("app");
   }
 
 }

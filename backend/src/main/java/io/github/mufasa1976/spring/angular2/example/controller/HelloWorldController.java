@@ -11,7 +11,7 @@ import io.github.mufasa1976.spring.angular2.example.resource.HelloWorldResource;
 @RequestMapping("/api/helloWorld")
 public interface HelloWorldController {
 
-  @RequestMapping(method = RequestMethod.GET)
+  @GetMapping
   PagedResources<HelloWorldResource> findAll(Pageable pageable);
 
   @GetMapping("{id}")
