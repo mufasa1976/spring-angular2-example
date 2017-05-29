@@ -34,7 +34,8 @@ class WebMvcConfiguration extends WebMvcConfigurerAdapter {
   @Override
   public void addResourceHandlers(ResourceHandlerRegistry registry) {
     registry.setOrder(0);
-    RESOURCE_MAPPINGS.forEach((path, suffix) -> registry.addResourceHandler(path).addResourceLocations(prefixWithFrontendClasspath(suffix)));
+    RESOURCE_MAPPINGS.forEach((path, suffix) ->
+            registry.addResourceHandler(path).addResourceLocations(prefixWithFrontendClasspath(suffix)));
   }
 
   private String prefixWithFrontendClasspath(String suffix) {
