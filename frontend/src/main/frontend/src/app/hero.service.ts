@@ -18,18 +18,12 @@ export class HeroService {
         console.log(response.json());
         return response.json()._embedded.heroes as Hero[];
       })
-      .catch(this.handleError);
+      .catch(HeroService.handleError);
   }
 
-  private handleError(error: any): Promise<any> {
+  private static handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
-  }
-
-  getHeroesSlowly(): Promise<Hero[]> {
-    return new Promise(resolve => {
-      setTimeout(() => resolve(this.getHeroes()), 2000);
-    })
   }
 
   getHero(id: number): Promise<Hero> {
@@ -37,7 +31,7 @@ export class HeroService {
     return this.http.get(url)
       .toPromise()
       .then(response => response.json() as Hero)
-      .catch(this.handleError);
+      .catch(HeroService.handleError);
   }
 
 }
