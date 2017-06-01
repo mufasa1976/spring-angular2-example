@@ -1,4 +1,5 @@
 export class Hero {
-  id: number;
+  reference: string;
   name: string;
+  _links: any;
 }
