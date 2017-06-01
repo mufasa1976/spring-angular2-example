@@ -11,6 +11,12 @@ public interface HeroService {
 
   PagedResources<HeroResource> readAll(Pageable pageable);
 
-  Optional<HeroResource> read(Long id);
+  Optional<HeroResource> read(String reference);
+
+  HeroResource create(HeroResource resource);
+
+  Optional<HeroResource> update(String reference, HeroResource resource);
+
+  void delete(String reference);
 
 }

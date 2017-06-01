@@ -16,22 +16,19 @@ import java.time.LocalDateTime;
 @Relation(value = "hero", collectionRelation = "heroes")
 public class HeroResource extends AbstractResource {
 
-  @JsonProperty("id")
-  private Long dbId;
   private String name;
 
   @Builder
   @JsonCreator
   public HeroResource(
+      @JsonProperty("reference") final String reference,
       @JsonProperty("version") final int version,
       @JsonProperty("createdBy") final String createdBy,
       @JsonProperty("createdAt") final LocalDateTime createdAt,
       @JsonProperty("lastModifiedBy") final String lastModifiedBy,
       @JsonProperty("lastModifiedAt") final LocalDateTime lastModifiedAt,
-      @JsonProperty("id") final Long id,
       @JsonProperty("name") final String name) {
-    super(version, createdBy, createdAt, lastModifiedBy, lastModifiedAt);
-    this.dbId = id;
+    super(reference, version, createdBy, createdAt, lastModifiedBy, lastModifiedAt);
     this.name = name;
   }
 }

@@ -10,12 +10,12 @@ public interface HelloWorldService {
 
   PagedResources<HelloWorldResource> readAll(Pageable pageable, Optional<String> filter);
 
-  Optional<HelloWorldResource> read(Long id);
+  Optional<HelloWorldResource> read(String reference);
 
   HelloWorldResource create(HelloWorldResource resource);
 
-  Optional<HelloWorldResource> update(Long id, HelloWorldResource resource);
+  Optional<HelloWorldResource> update(String reference, HelloWorldResource resource);
 
-  void delete(Long id);
+  void delete(String reference);
 
 }

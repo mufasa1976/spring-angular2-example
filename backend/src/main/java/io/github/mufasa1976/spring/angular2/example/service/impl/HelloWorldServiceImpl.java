@@ -24,19 +24,25 @@ import io.github.mufasa1976.spring.angular2.example.repository.HelloWorldReposit
 import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor
-public class HelloWorldServiceImpl implements HelloWorldService {
+class HelloWorldServiceImpl extends AbstractServiceImpl<HelloWorldEntity, HelloWorldResource, HelloWorldRepository> implements HelloWorldService {
 
-  private final ModelMapper modelMapper;
   private final PagedResourcesAssembler<HelloWorldEntity> pagedResourcesAssembler;
   private final HelloWorldResourceAssembler resourceAssembler;
-  private final HelloWorldRepository repository;
-  private final EntityManager entityManager;
+
+  HelloWorldServiceImpl(
+      final ModelMapper modelMapper,
+      final HelloWorldRepository repository,
+      final EntityManager entityManager,
+      final PagedResourcesAssembler<HelloWorldEntity> pagedResourcesAssembler,
+      final HelloWorldResourceAssembler resourceAssembler) {
+    super(modelMapper, HelloWorldEntity.class, repository, entityManager);
+    this.pagedResourcesAssembler = pagedResourcesAssembler;
+    this.resourceAssembler = resourceAssembler;
+  }
 
   @Override
   public PagedResources<HelloWorldResource> readAll(Pageable pageable, Optional<String> filter) {
-    Page<HelloWorldEntity> page = repository.findAll(buildQuery(filter), pageable);
-    return pagedResourcesAssembler.toResource(page, resourceAssembler);
+    return pagedResourcesAssembler.toResource(findAll(pageable, buildQuery(filter)), resourceAssembler);
   }
 
   private Predicate buildQuery(Optional<String> filter) {
@@ -47,38 +53,23 @@ public class HelloWorldServiceImpl implements HelloWorldService {
   }
 
   @Override
-  public Optional<HelloWorldResource> read(Long id) {
-    return Optional.ofNullable(repository.findOne(id))
+  public Optional<HelloWorldResource> read(String reference) {
+    return findByReference(reference)
         .map(resourceAssembler::toResource);
   }
 
   @Override
   @Transactional
   public HelloWorldResource create(HelloWorldResource resource) {
-    HelloWorldEntity entity = modelMapper.map(resource, HelloWorldEntity.class);
-    entity = repository.save(entity);
+    HelloWorldEntity entity = map(resource);
+    entity = save(entity);
     return resourceAssembler.toResource(entity);
   }
 
   @Override
   @Transactional
-  public Optional<HelloWorldResource> update(Long id, HelloWorldResource resource) {
-    return Optional.ofNullable(repository.findOne(id))
-        .map(entity -> update(entity, resource))
+  public Optional<HelloWorldResource> update(String reference, HelloWorldResource resource) {
+    return updateEntity(reference, resource)
         .map(resourceAssembler::toResource);
-  }
-
-  private HelloWorldEntity update(HelloWorldEntity entity, HelloWorldResource resource) {
-    entityManager.detach(entity);
-    modelMapper.map(resource, entity);
-    entity = repository.saveAndFlush(entity);
-    entityManager.refresh(entity);
-    return entity;
-  }
-
-  @Override
-  @Transactional
-  public void delete(Long id) {
-    repository.delete(id);
   }
 }

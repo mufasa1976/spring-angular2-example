@@ -29,16 +29,16 @@ public class HelloWorldControllerImpl implements HelloWorldController {
 
   @Override
   @Secured({ "ROLE_GROUP1", "ROLE_GROUP2", "ROLE_GROUP3" })
-  public ResponseEntity<HelloWorldResource> read(@PathVariable Long id) {
-    return helloWorldService.read(id)
+  public ResponseEntity<HelloWorldResource> read(@PathVariable String reference) {
+    return helloWorldService.read(reference)
         .map(ResponseEntity::ok)
         .orElseGet(ResponseEntity.notFound()::build);
   }
 
   @Override
   @Secured("ROLE_GROUP1")
-  public ResponseEntity<HelloWorldResource> update(@PathVariable Long id, @RequestBody HelloWorldResource resource) {
-    return helloWorldService.update(id, resource)
+  public ResponseEntity<HelloWorldResource> update(@PathVariable String reference, @RequestBody HelloWorldResource resource) {
+    return helloWorldService.update(reference, resource)
         .map(ResponseEntity::ok)
         .orElseGet(ResponseEntity.notFound()::build);
   }
@@ -51,8 +51,8 @@ public class HelloWorldControllerImpl implements HelloWorldController {
 
   @Override
   @Secured("ROLE_GROUP2")
-  public void delete(@PathVariable Long id) {
-    helloWorldService.delete(id);
+  public void delete(@PathVariable String reference) {
+    helloWorldService.delete(reference);
   }
 
 }

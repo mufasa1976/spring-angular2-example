@@ -10,8 +10,9 @@ import lombok.*;
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(callSuper = false)
 @ToString
-abstract class AbstractResource extends ResourceSupport {
+public abstract class AbstractResource extends ResourceSupport {
 
+  private String reference;
   private int version;
 
   private String createdBy;

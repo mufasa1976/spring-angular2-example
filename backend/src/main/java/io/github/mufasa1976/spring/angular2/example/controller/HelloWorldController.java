@@ -14,17 +14,17 @@ public interface HelloWorldController {
   @GetMapping
   PagedResources<HelloWorldResource> findAll(Pageable pageable);
 
-  @GetMapping("{id}")
-  ResponseEntity<HelloWorldResource> read(@PathVariable("id") Long id);
+  @GetMapping("{reference}")
+  ResponseEntity<HelloWorldResource> read(@PathVariable("reference") String reference);
 
-  @PutMapping("{id}")
-  ResponseEntity<HelloWorldResource> update(@PathVariable("id") Long id, @RequestBody HelloWorldResource resource);
+  @PutMapping("{reference}")
+  ResponseEntity<HelloWorldResource> update(@PathVariable("reference") String reference, @RequestBody HelloWorldResource resource);
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   HelloWorldResource create(@RequestBody HelloWorldResource resource);
 
-  @DeleteMapping("{id}")
-  void delete(@PathVariable("id") Long id);
+  @DeleteMapping("{reference}")
+  void delete(@PathVariable("reference") String reference);
 
 }

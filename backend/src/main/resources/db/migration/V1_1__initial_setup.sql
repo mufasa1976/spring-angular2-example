@@ -1,5 +1,6 @@
 CREATE TABLE hello_world (
   id               BIGINT       NOT NULL PRIMARY KEY
+ ,reference        VARCHAR(36)  NOT NULL UNIQUE
  ,version          INTEGER      NOT NULL
  ,value            VARCHAR(255)
  ,created_at       TIMESTAMP    NOT NULL
@@ -10,6 +11,7 @@ CREATE TABLE hello_world (
 
 CREATE TABLE heroes (
   id               BIGINT       NOT NULL PRIMARY KEY
+ ,reference        VARCHAR(36)  NOT NULL UNIQUE
  ,version          INTEGER      NOT NULL
  ,name             VARCHAR(255) NOT NULL
  ,created_at       TIMESTAMP    NOT NULL

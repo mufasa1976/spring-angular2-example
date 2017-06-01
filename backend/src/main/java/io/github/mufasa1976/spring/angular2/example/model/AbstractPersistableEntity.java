@@ -1,11 +1,13 @@
 package io.github.mufasa1976.spring.angular2.example.model;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -25,7 +27,11 @@ import lombok.Setter;
 @Setter(AccessLevel.NONE)
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public abstract class AbstractPersistableEntity extends AbstractPersistable<Long> implements Auditable, Identifiable<Long> {
+public abstract class AbstractPersistableEntity extends AbstractPersistable<Long> implements Auditable, ReferableEntity<String>, Identifiable<Long> {
+
+  @Column(length = 36, unique = true, updatable = false)
+  @NotNull
+  private String reference = UUID.randomUUID().toString();
 
   @Version
   @Setter(AccessLevel.PUBLIC)

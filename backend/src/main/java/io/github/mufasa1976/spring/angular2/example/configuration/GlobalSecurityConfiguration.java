@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -12,9 +13,11 @@ import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMap
 import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper;
 
 @Configuration
-@EnableGlobalMethodSecurity(securedEnabled = true)
+@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class GlobalSecurityConfiguration extends GlobalMethodSecurityConfiguration {
 
+  // Here @Autowired is used to break the configuration circuit
+  @SuppressWarnings("SpringAutowiredFieldsWarningInspection")
   @Autowired
   @Qualifier("owncloudAuthenticationProvider")
   private AuthenticationProvider authenticationProvider;
@@ -30,5 +33,7 @@ public class GlobalSecurityConfiguration extends GlobalMethodSecurityConfigurati
     authorityMapper.setConvertToUpperCase(true);
     return authorityMapper;
   }
+
+
 
 }

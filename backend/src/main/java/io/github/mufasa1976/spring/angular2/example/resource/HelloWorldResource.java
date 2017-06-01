@@ -23,13 +23,14 @@ public class HelloWorldResource extends AbstractResource {
   @Builder
   @JsonCreator
   public HelloWorldResource(
+      @JsonProperty("reference") final String reference,
       @JsonProperty("version") final int version,
       @JsonProperty("createdBy") final String createdBy,
       @JsonProperty("createdAt") final LocalDateTime createdAt,
       @JsonProperty("lastModifiedBy") final String lastModifiedBy,
       @JsonProperty("lastModifiedAt") final LocalDateTime lastModifiedAt,
       @JsonProperty("value") final String value) {
-    super(version, createdBy, createdAt, lastModifiedBy, lastModifiedAt);
+    super(reference, version, createdBy, createdAt, lastModifiedBy, lastModifiedAt);
     this.value = value;
   }
 
