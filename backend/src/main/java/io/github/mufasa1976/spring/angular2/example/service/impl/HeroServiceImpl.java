@@ -2,9 +2,12 @@ package io.github.mufasa1976.spring.angular2.example.service.impl;
 
 import java.util.Optional;
 
+import com.querydsl.core.types.Predicate;
 import io.github.mufasa1976.spring.angular2.example.assembler.HelloWorldResourceAssembler;
 import io.github.mufasa1976.spring.angular2.example.model.HelloWorldEntity;
+import io.github.mufasa1976.spring.angular2.example.model.QHeroEntity;
 import io.github.mufasa1976.spring.angular2.example.repository.HelloWorldRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -41,8 +44,15 @@ class HeroServiceImpl extends AbstractServiceImpl<HeroEntity, HeroResource, Hero
   }
 
   @Override
-  public PagedResources<HeroResource> readAll(Pageable pageable) {
-    return pagedResourcesAssembler.toResource(findAll(pageable), resourceAssembler);
+  public PagedResources<HeroResource> readAll(Pageable pageable, String name) {
+    return pagedResourcesAssembler.toResource(findAll(pageable, createQuery(name)), resourceAssembler);
+  }
+
+  private Predicate createQuery(String name) {
+    return Optional.ofNullable(name)
+        .filter(StringUtils::isNotBlank)
+        .map(QHeroEntity.heroEntity.name::containsIgnoreCase)
+        .orElse(null);
   }
 
   @Override

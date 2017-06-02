@@ -9,7 +9,7 @@ import io.github.mufasa1976.spring.angular2.example.resource.HeroResource;
 
 public interface HeroService {
 
-  PagedResources<HeroResource> readAll(Pageable pageable);
+  PagedResources<HeroResource> readAll(Pageable pageable, String name);
 
   Optional<HeroResource> read(String reference);
 

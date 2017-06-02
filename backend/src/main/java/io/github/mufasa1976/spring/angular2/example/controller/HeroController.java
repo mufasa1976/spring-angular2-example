@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface HeroController {
 
   @GetMapping
-  PagedResources<HeroResource> findAll(Pageable pageable);
+  PagedResources<HeroResource> findAll(Pageable pageable, String name);
 
   @GetMapping("{reference}")
   ResponseEntity<HeroResource> read(@PathVariable("reference") String reference);

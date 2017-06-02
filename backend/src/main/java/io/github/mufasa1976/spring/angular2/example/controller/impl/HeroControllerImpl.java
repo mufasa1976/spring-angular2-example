@@ -27,8 +27,8 @@ public class HeroControllerImpl implements HeroController {
   private final HeroService heroService;
 
   @Override
-  public PagedResources<HeroResource> findAll(Pageable pageable) {
-    return heroService.readAll(pageable);
+  public PagedResources<HeroResource> findAll(Pageable pageable, String name) {
+    return heroService.readAll(pageable, name);
   }
 
   @Override
