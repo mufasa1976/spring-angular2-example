@@ -25,7 +25,6 @@ spring:
       write-bigdecimal-as-plain: true
   thymeleaf:
     prefix: classpath:/META-INF/resources/frontend/
-    mode: HTML
 owncloud:
   location: classpath:/owncloud.xml
 info:
