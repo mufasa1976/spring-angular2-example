@@ -4,9 +4,9 @@ server:
       name: EXAMPLESESSION
 spring:
   aop:
-    proxy-target-class: true # without the Security wont work in conjunction with the GetMapping
+    proxy-target-class: true # without this the Security wont work in conjunction with the GetMapping
   datasource:
-    url: jdbc:h2:mem:oauth2-example
+    url: jdbc:h2:mem:angular2-example
     username: sa
     password:
   jpa:
