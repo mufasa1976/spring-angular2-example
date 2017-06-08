@@ -1,12 +1,12 @@
 <!doctype html>
-<html>
-<head>
+<html xmlns:th="http://www.thymeleaf.com">
+<base>
   <meta charset="utf-8">
   <title>SpringAngular2Example</title>
-  <base href="/">
+  <base href="." th:href="@{/}" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" th:href="@{/favicon.ico}">
 </head>
 <body>
   <app-root>Loading...</app-root>

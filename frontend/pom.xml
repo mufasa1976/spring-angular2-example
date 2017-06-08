@@ -78,7 +78,7 @@
               <resources>
                 <resource>
                   <directory>target/frontend</directory>
-                  <targetPath>META-INF/resources/webjars/${project.artifactId}/${project.version}</targetPath>
+                  <targetPath>META-INF/resources/frontend</targetPath>
                 </resource>
               </resources>
             </configuration>

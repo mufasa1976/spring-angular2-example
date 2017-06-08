@@ -17,8 +17,6 @@ import java.util.Map;
 @Slf4j
 class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 
-  private final static String FRONTEND_APPLICATION = "spring-angular2-example-frontend";
-
   private final static Map<String, String> RESOURCE_MAPPINGS;
 
   static {
@@ -28,23 +26,21 @@ class WebMvcConfiguration extends WebMvcConfigurerAdapter {
     RESOURCE_MAPPINGS.put("/assets/**", "/assets/");
   }
 
-  @Value("${info.build.version}")
-  private String version;
-
   @Override
   public void addResourceHandlers(ResourceHandlerRegistry registry) {
     registry.setOrder(0);
     RESOURCE_MAPPINGS.forEach((path, suffix) ->
             registry.addResourceHandler(path).addResourceLocations(prefixWithFrontendClasspath(suffix)));
+    registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars");
   }
 
   private String prefixWithFrontendClasspath(String suffix) {
-    return String.format("classpath:/META-INF/resources/webjars/%s/%s%s", FRONTEND_APPLICATION, version, suffix);
+    return String.format("classpath:/META-INF/resources/frontend%s", suffix);
   }
 
   @Override
   public void addViewControllers(ViewControllerRegistry registry) {
-    registry.addViewController("/**").setViewName("app");
+    registry.addViewController("/**").setViewName("index");
   }
 
 }

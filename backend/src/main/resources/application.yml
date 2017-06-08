@@ -23,6 +23,9 @@ spring:
       indent-output: true
     generator:
       write-bigdecimal-as-plain: true
+  thymeleaf:
+    prefix: classpath:/META-INF/resources/frontend/
+    mode: HTML5
 owncloud:
   location: classpath:/owncloud.xml
 info:
