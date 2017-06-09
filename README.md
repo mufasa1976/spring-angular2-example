@@ -1,4 +1,8 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+# How to reproduce
+1. Create a Multi-Module Maven Project with the following ``pom.xml``:
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
@@ -6,19 +10,6 @@
   <artifactId>spring-angular2-example</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
-
-  <licenses>
-    <license>
-      <name>GNU General Public License (GPL)</name>
-      <url>http://www.gnu.org/licenses/gpl.txt</url>
-    </license>
-  </licenses>
-
-  <scm>
-    <url>https://github.com/mufasa1976/spring-angular2-example</url>
-    <connection>scm:git:git://github.com/mufasa1976/spring-angular2-example.git</connection>
-    <developerConnection>scm:git:git@github.com:mufasa1976/spring-angular2-example.git</developerConnection>
-  </scm>
 
   <modules>
     <module>frontend</module>
@@ -34,11 +25,7 @@
 
     <!-- Dependency Versions -->
     <spring-boot.version>1.5.3.RELEASE</spring-boot.version>
-    <commons-lang3.version>3.5</commons-lang3.version>
-    <modelmapper.version>0.7.8</modelmapper.version>
     <thymeleaf.version>3.0.6.RELEASE</thymeleaf.version>
-    <thymeleaf-springsecurity.version>3.0.2.RELEASE</thymeleaf-springsecurity.version>
-    <thymeleaf-layout.version>2.2.2</thymeleaf-layout.version>
 
     <!-- Plugin Versions -->
     <frontend-plugin.version>1.3</frontend-plugin.version>
@@ -60,20 +47,6 @@
         <scope>import</scope>
       </dependency>
 
-      <!-- Apache Commons -->
-      <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-lang3</artifactId>
-        <version>${commons-lang3.version}</version>
-      </dependency>
-
-      <!-- Model Mapper -->
-      <dependency>
-        <groupId>org.modelmapper</groupId>
-        <artifactId>modelmapper</artifactId>
-        <version>${modelmapper.version}</version>
-      </dependency>
-
       <!-- Thymeleaf -->
       <dependency>
         <groupId>org.thymeleaf</groupId>
@@ -85,56 +58,12 @@
         <artifactId>thymeleaf-spring4</artifactId>
         <version>${thymeleaf.version}</version>
       </dependency>
-      <dependency>
-        <groupId>org.thymeleaf.extras</groupId>
-        <artifactId>thymeleaf-extras-springsecurity4</artifactId>
-        <version>${thymeleaf-springsecurity.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>nz.net.ultraq.thymeleaf</groupId>
-        <artifactId>thymeleaf-layout-dialect</artifactId>
-        <version>${thymeleaf-layout.version}</version>
-      </dependency>
     </dependencies>
   </dependencyManagement>
 
   <build>
     <pluginManagement>
       <plugins>
-        <!-- Maven Plugins of Apache Group -->
-        <plugin>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>3.0.2</version>
-        </plugin>
-
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.6.0</version>
-        </plugin>
-
-        <plugin>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>3.0.2</version>
-          <configuration>
-            <archive>
-              <manifest>
-                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-              </manifest>
-            </archive>
-          </configuration>
-        </plugin>
-
-        <plugin>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version>
-        </plugin>
-
-        <plugin>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.19.1</version>
-        </plugin>
-
         <!-- Build Helper Plugin -->
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -159,14 +88,94 @@
             <npmVersion>${npm.version}</npmVersion>
           </configuration>
         </plugin>
-
-        <!-- QueryDSL Plugin -->
-        <plugin>
-          <groupId>com.mysema.maven</groupId>
-          <artifactId>apt-maven-plugin</artifactId>
-          <version>${querydsl-plugin.version}</version>
-        </plugin>
       </plugins>
     </pluginManagement>
   </build>
 </project>
+```
+2. Create a Directory for ``backend``and ``frontend``.
+3. Create the following ``backend/pom.xml``:
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>io.github.mufasa1976</groupId>
+    <artifactId>spring-angular2-example</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <relativePath>..</relativePath>
+  </parent>
+
+  <artifactId>spring-angular2-example-backend</artifactId>
+
+  <dependencies>
+    <!-- Compile Dependencies -->
+
+    <!-- Spring Boot -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency>
+
+    <!-- Provided Dependencies -->
+
+    <!-- Lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- Runtime Dependencies -->
+
+    <!-- Frontend -->
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>spring-angular2-example-frontend</artifactId>
+      <version>${project.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+
+    <plugins>
+      <!-- Maven Resources Plugin -->
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <configuration>
+          <delimiters>
+            <delimiter>@</delimiter>
+          </delimiters>
+          <useDefaultDelimiters>false</useDefaultDelimiters>
+        </configuration>
+      </plugin>
+
+      <!-- Spring Boot Plugin -->
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+```
+4. Create the following ``frontend/pom.xml``:
+```xml
+To be continued
+```
