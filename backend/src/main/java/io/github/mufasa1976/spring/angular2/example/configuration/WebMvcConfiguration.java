@@ -23,6 +23,7 @@ class WebMvcConfiguration extends WebMvcConfigurerAdapter {
     RESOURCE_MAPPINGS = new HashMap<>();
     RESOURCE_MAPPINGS.put("/*.bundle.js", "/");
     RESOURCE_MAPPINGS.put("/*.bundle.js.map", "/");
+    RESOURCE_MAPPINGS.put("/*.css", "/");
     RESOURCE_MAPPINGS.put("/assets/**", "/assets/");
   }
 
